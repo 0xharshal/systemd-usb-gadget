@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh -e
 
 SYSDIR=/sys/kernel/config/usb_gadget/
 DEVDIR=$SYSDIR/$1
