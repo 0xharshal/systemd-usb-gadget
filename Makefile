@@ -27,3 +27,7 @@ install-units: $(UNITS)
 		sed -i 's:@SBINDIR@:$(sbindir):g' $(DESTDIR)$(unitdir)/$$u ; \
 		sed -i 's:@SYSCONFDIR@:$(sysconfdir):g' $(DESTDIR)$(unitdir)/$$u ; \
 	done
+
+clean:
+	for s in $(SCRIPTS); do rm -v $(DESTDIR)$(sbindir)/$${s%.sh} || true; done
+	for u in $(UNITS); do rm -v $(DESTDIR)$(unitdir)/$$u || true; done
