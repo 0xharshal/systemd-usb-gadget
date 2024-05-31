@@ -1,6 +1,6 @@
-sbindir=/sbin
-sysconfdir=/etc
-unitdir=$(sysconfdir)/systemd/system
+sbindir ?= /sbin
+sysconfdir ?= /etc
+unitdir ?= $(sysconfdir)/systemd/system
 
 UNITS = \
 	usb-gadget@.service
@@ -24,4 +24,6 @@ install-units: $(UNITS)
 	mkdir -p $(DESTDIR)$(unitdir)
 	for u in $(UNITS); do \
 		install -m 600 $$u $(DESTDIR)$(unitdir); \
+		sed -i 's:@SBINDIR@:$(sbindir):g' $(DESTDIR)$(unitdir)/$$u ; \
+		sed -i 's:@SYSCONFDIR@:$(sysconfdir):g' $(DESTDIR)$(unitdir)/$$u ; \
 	done

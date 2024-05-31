@@ -3,10 +3,10 @@ Description=USB Gadget %I
 ConditionPathIsDirectory=/sys/kernel/config/usb_gadget
 
 [Service]
-EnvironmentFile=/etc/gadget/%i.conf
+EnvironmentFile=@SYSCONFDIR@/gadget/%i.conf
 RemainAfterExit=yes
-ExecStart=/sbin/configure-gadget %i
-ExecStop=/sbin/remove-gadget %i
+ExecStart=@SBINDIR@/configure-gadget %i
+ExecStop=@SBINDIR@/remove-gadget %i
 
 [Install]
 WantedBy=multi-user.target
